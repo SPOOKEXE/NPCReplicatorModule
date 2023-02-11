@@ -13,7 +13,7 @@ baseVisualPart.Size = Vector3.new(1, 1, 1)
 baseVisualPart.CastShadow = false
 
 local MoveToWaitGlobalCache = {}
-local DEFAULT_MOVE_TO_WAIT_TIMEOUT_DURATION = 4
+local DEFAULT_MOVE_TO_WAIT_TIMEOUT_DURATION = 3
 
 -- // Module // --
 local Module = {}
@@ -46,10 +46,10 @@ function Module:PathfindTo( AIClass, TargetPosition, AgentParams )
 	PathObject:ComputeAsync( AIClass.Position, TargetPosition )
 
 	local Waypoints = PathObject:GetWaypoints()
-	local VisualWaypoints = Module:VisualizePathWaypoints( Waypoints )
+	--[[local VisualWaypoints = Module:VisualizePathWaypoints( Waypoints )
 	for _, basePart in ipairs( VisualWaypoints ) do
 		Debris:AddItem(basePart, 4)
-	end
+	end]]
 
 	for _, waypoint in ipairs( Waypoints ) do
 		if not Module:MoveToWait( AIClass, waypoint.Position ) then
